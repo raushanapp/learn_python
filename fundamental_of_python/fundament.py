@@ -4,6 +4,7 @@
 # print(type(2-4))
 # print(type(2*4))
 # print(type(2/4)) # division always return float and python automatically converts int to float if needed
+from mimetypes import init
 
 print(type(10.56))
 print(type(9.9+1.1)) # addition of two floats results in a float
@@ -48,3 +49,10 @@ print(20-3**2 * 2 + 1) # exponentiation has higher precedence than multiplicatio
 print((20-3**2 * 2) + 1) # parentheses alter the precedence, multiplication happens first, then exponentiation, then subtraction, then addition
 print(20-3**2 * (2 + 1)) # parentheses alter the precedence, addition happens first, then exponentiation, then multiplication, then subtraction
 print((20-3**2) * (2 + 1)) # parentheses alter the precedence, exponentiation happens first, then subtraction, then multiplication
+
+#  Extra data
+# complex
+# int and float  # store in the memory in binaray version in the
+print(bin(5))
+
+print(int('0b101',2))
