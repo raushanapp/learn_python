@@ -122,3 +122,93 @@ print(int('0b101', 2))  # 5        -> binary string back to int (base 2)
 - `**` binds tighter than `*`, `/`, `+`, `-`.
 - Use `%` for remainders (e.g. even/odd check: `n % 2 == 0`).
 - Cleanup: `from mimetypes import init` at the top of `fundament.py` is an accidental auto-import and can be deleted.
+
+---
+
+# Python Fundamentals: Variables
+
+A variable stores information (a value) so we can reuse it in our program.
+
+```python
+iq = 109
+print(iq)  # 109
+```
+
+```mermaid
+flowchart LR
+    N["iq (name)"] -->|points to| V["109 (value in memory)"]
+```
+
+## 1. Variable Naming Rules
+
+| Rule                                | Good                     | Bad                          |
+|-------------------------------------|--------------------------|------------------------------|
+| Use `snake_case`                    | `user_age`               | `userAge`                    |
+| Start with a lowercase letter or `_`| `iq`, `_user_id`         | `1user`                      |
+| Only letters, numbers, underscores  | `user41`                 | `user-41`, `user 41`         |
+| Case sensitive                      | `user_IQ` != `user_iq`   | using `user_iq` for `user_IQ`|
+| Don't overwrite keywords            | `class_name`             | `class`, `if`, `for`         |
+
+```python
+iq = 109
+_user_id = 190
+user41 = "180"      # a str, because of the quotes
+user_IQ = 200
+
+# print(user_iq)    # NameError: names are case sensitive (user_IQ was defined)
+```
+
+## 2. Two Small Gotchas
+
+```python
+# Constants: UPPER_CASE by convention (Python does not enforce it)
+PI = 3.14           # signals "this value never changes"
+
+# Avoid names with double leading underscores
+# __hi = "hi"       # reserved for special Python behavior; don't use
+
+# Multiple assignment
+e, b, c = 1, 2, 3
+print(e, b, c)      # 1 2 3
+```
+
+## 3. Expression vs Statement
+
+- **Expression:** produces a value, e.g. `iq / 4`.
+- **Statement:** performs an action, e.g. `user_age = iq / 4`.
+
+```python
+user_age = iq / 4   # right side is the expression, whole line is the statement
+print(user_age)     # 27.25
+```
+
+## 4. Augmented Assignment Operators
+
+Shortcut for updating a variable using its own previous value. The operator goes to the **left** of `=`.
+
+```python
+some_value = 5
+some_value = some_value * 2   # 10 (name now points to a new value in memory)
+some_value += 2               # 12  same as some_value = some_value + 2
+some_value *= 3               # 36
+some_value -= 4               # 32
+print(some_value)             # 32
+```
+
+```mermaid
+flowchart LR
+    A["5"] -->|"* 2"| B["10"]
+    B -->|"+= 2"| C["12"]
+    C -->|"*= 3"| D["36"]
+    D -->|"-= 4"| E["32"]
+```
+
+Also available: `/=`, `//=`, `%=`, `**=`.
+
+## 5. Remember
+
+- Variables are names pointing to values; reassigning points the name to a new value.
+- Names are case sensitive; stick to `snake_case`.
+- Constants use `UPPER_CASE`.
+- Never use a keyword as a variable name.
+- A leading space on a line causes `IndentationError`.
