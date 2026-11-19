@@ -26,6 +26,7 @@ My personal Python learning journey, based on the ZTM (Zero To Mastery) course. 
 |-------|--------|-------|----------------|
 | Conditional logic and indentation | [`Python_level_2/Conditional_logic`](Python_level_2/Conditional_logic) | [conditional_logic.md](Python_level_2/Conditional_logic/conditional_logic.md) | `if` / `elif` / `else`, `and` / `or` / `not`, truthy values, nested conditions, indentation rules |
 | Truthy and falsy | [`Python_level_2/Truthy_Falsy`](Python_level_2/Truthy_Falsy) | [truthy_falsy.md](Python_level_2/Truthy_Falsy/truthy_falsy.md) | falsy values, `bool()`, `if items:` style, `or` defaults, `is None`, real-life validation use cases |
+| Operators | [`Python_level_2/Operator`](Python_level_2/Operator) | [operator.md](Python_level_2/Operator/operator.md) | ternary operator, short circuiting, comparison and logical operators, Unicode string comparison, chained comparisons |
 
 ## Practice and exercises
 
@@ -47,7 +48,8 @@ learn_python/
 ├── Sets/
 ├── Python_level_2/
 │   ├── Conditional_logic/
-│   └── Truthy_Falsy/
+│   ├── Truthy_Falsy/
+│   └── Operator/
 ├── Exercise/
 └── README.md
 ```
