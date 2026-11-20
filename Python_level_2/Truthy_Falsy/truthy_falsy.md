@@ -200,6 +200,95 @@ else:
     print("you have no weapon")
 ```
 
+## `==` vs `is`
+
+Both give a boolean, but they ask different questions.
+
+| Operator | Question | Compares |
+|----------|----------|----------|
+| `==` | Are the **values** equal? | value |
+| `is` | Are they the **same object** in memory? | identity (`id()`) |
+
+### `==` : equality of value
+
+```python
+print(True == 1)      # True
+print('' == 1)        # False
+print('1' == 1)       # False
+print([] == 1)        # False
+print(10 == 10.0)     # True
+print([] == [])       # True
+```
+
+Why each result:
+
+- `True == 1` is `True` because `bool` is a subclass of `int`: `True` **is** the number `1` and `False` is `0`. (It is not `bool(1)` conversion.)
+- `'' == 1` and `'1' == 1` are `False`: Python does **not** convert a string to a number. Different types, so not equal (`'1'` is text, `1` is a number).
+- `[] == 1` is `False`: a list and a number are never equal. Being falsy doesn't matter; `==` doesn't use truthiness.
+- `10 == 10.0` is `True`: numbers are compared by numeric value.
+- `[] == []` is `True`: two lists with the same contents are equal.
+
+Note: truthiness is **not** equality.
+
+```python
+print(bool([]) == False)   # True   bool([]) is False
+print([] == False)         # False  a list is not equal to False
+print(0 == False)          # True   0 equals False
+print('' == False)         # False
+```
+
+### `is` : same object in memory
+
+```python
+print(True is 1)      # False
+print(True is True)   # True
+print('' is 1)        # False
+print('1' is 1)       # False
+print([] is 1)        # False
+print(10 is 10.0)     # False
+print([] is [])       # False
+```
+
+Why:
+
+- `True is True` is `True`: `True` is a single object (a singleton). `None` is too.
+- `True is 1` is `False`: they are equal in value but are **different objects** (a `bool` and an `int`).
+- `10 is 10.0` is `False`: an `int` and a `float` are different objects. (No conversion happens; they are just different.)
+- `[] is []` is `False`: every `[]` you write creates a **new list** in memory, so two lists are always different objects even with the same contents. Lists, dicts and sets are like this.
+
+```python
+a = [1, 2]
+b = a          # b points to the same list
+c = [1, 2]     # a new list with the same contents
+
+print(a is b)    # True
+print(a is c)    # False
+print(a == c)    # True
+```
+
+Python warns about `True is 1` and `'1' is 1` with `SyntaxWarning: "is" with a literal`. Don't use `is` with literals.
+
+### When to use which
+
+| Use | For |
+|-----|-----|
+| `==` | comparing values: numbers, strings, lists, dicts |
+| `is` / `is not` | `None`, `True`, `False` singletons |
+
+```python
+x = None
+if x is None:        # recommended
+    print("no value")
+
+if x == None:        # works but not recommended (a class can override ==)
+    pass
+
+if x is not None:
+    print("has a value")
+```
+
+Never use `is` to compare numbers or strings; the result can depend on how Python stores them.
+
 ## Summary
 
 - Falsy: `None`, `False`, zero, and empty sequences/collections (`''`, `[]`, `{}`, `()`, `set()`, `range(0)`).
@@ -209,3 +298,7 @@ else:
 - `or` is handy for defaults; `and`/`or` return one of their operands.
 - Use `is None` when `0` or `''` are valid values.
 - A truthy check tests presence, not correctness.
+- `==` compares values; `is` compares memory identity.
+- `True == 1` is `True` (`bool` is a kind of `int`), but `True is 1` is `False`.
+- `[] == []` is `True`, `[] is []` is `False`.
+- Use `==` for values and `is` only for `None`, `True` and `False`.

@@ -48,3 +48,23 @@ if password and username:
     print("password and username are the same!")
 else:
     print("Wrong password and username!")
+
+#  Expression
+#  == check equality of value
+print(True == 1)  # True  this will convert to True == bool(1) --> here type conversion do internally by the python
+print('' == 1)  # False
+print('1' == 1)  # False  here  not because check directly type not converting to the one type
+print([] == 1)  # False  Empty array are falsy
+print(10 == 10.0)  # True  10.0 convert to 10 so that why true
+print([] == [])  # True
+
+#  is :  checks there is value in memory location is same or not
+print(True is 1)  # false  this will convert to True == bool(1) --> here type conversion do internally by the python
+print(True is True)  # True
+print('' is 1)  # False
+print('1' is 1)  # False  here  not because check directly type not converting to the one type
+print([] is 1)  # False  Empty array are falsy
+print(10 is 10.0)  # false  10.0 convert to 10 so that why true
+#   two list different  location in the memory
+#  [1,3,4,5] or [2,6,8,10] each time created it creating new location not a same location because this data structure
+print([] is [])  # false
